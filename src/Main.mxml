@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
+                       xmlns:s="library://ns.adobe.com/flex/spark"
+                       xmlns:screens="ui.screens.*"
+                       width="480"
+                       height="860"
+                       showStatusBar="false"
+                       creationComplete="onCreationComplete(event)">
+    <fx:Style source="../assets/css/global.css" />
+    <fx:Script><![CDATA[
+        import characterAndGear.Character;
+
+        import managers.CharacterManager;
+
+        import managers.DataManager;
+
+        import mx.events.FlexEvent;
+
+        private function onCreationComplete(event:FlexEvent):void
+        {
+            DataManager.instance.loadNextInQueue(start);
+        }
+
+        private function start():void
+        {
+            trace("@start");
+            var jimbo:Character = CharacterManager.instance.getCharacter("Jimbo Jones");
+            characterScreen1.character = jimbo;
+        }
+        ]]></fx:Script>
+    <s:HGroup width="100%"
+              height="100%"
+              padding="10">
+        <screens:CharacterScreen id="characterScreen1"
+                                 width="100%"
+                                 height="100%" />
+    </s:HGroup>
+</s:WindowedApplication>

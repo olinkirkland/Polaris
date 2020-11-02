@@ -1,0 +1,106 @@
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+
+
+/*
+Labels
+ */
+
+s|Label {
+    font-family: Arial;
+    color: #5A5A5A;
+    fontSize: 12;
+    paddingTop: 2;
+}
+
+s|Label.header {
+    fontWeight: bold;
+    fontSize: 16;
+}
+
+s|Label.primary {
+    fontWeight: bold;
+    color: #FFFFFF;
+}
+
+s|Label.secondary {
+    fontWeight: normal;
+    color: #5A5A5A;
+}
+
+s|TextInput {
+    skinClass: ClassReference("ui.skins.TextInputSkin");
+    focusAlpha: 0;
+}
+
+s|RichEditableText {
+    fontFamily: Arial;
+    color: #000000;
+    fontSize: 12;
+    paddingTop: 1;
+}
+
+s|CheckBox {
+    skinClass: ClassReference("ui.skins.CheckBoxSkin");
+}
+
+/*
+Scrollbars
+ */
+
+s|VScrollBar {
+    skinClass: ClassReference("ui.skins.scrollbars.VScrollBarSkin");
+}
+
+s|HScrollBar {
+    skinClass: ClassReference("ui.skins.scrollbars.HScrollBarSkin");
+}
+
+.scrollBar {
+    thumb_color: #d3d3d3;
+    track_color: #eeeeee;
+}
+
+/*
+Sliders
+ */
+
+s|HSlider {
+    skinClass: ClassReference("ui.skins.sliders.HSliderSkin");
+}
+
+.slider {
+    thumb_color: #d3d3d3;
+    track_color: #eeeeee;
+}
+
+/*
+Buttons
+ */
+
+s|Button {
+    skinClass: ClassReference("ui.skins.button.ButtonSkin");
+}
+
+/*s|ToggleButton {*/
+/*    skinClass: ClassReference("ui.skins.button.ToggleButtonSkin");*/
+/*}*/
+
+/*
+Miscellaneous
+ */
+
+s|Panel {
+    skinClass: ClassReference("ui.skins.PanelSkin");
+}
+
+s|DropDownList {
+    skinClass: ClassReference("ui.skins.DropDownListSkin");
+}
+
+global {
+    modalTransparency: 0.4;
+    modalTransparencyBlur: 0;
+    modalTransparencyColor: black;
+    modalTransparencyDuration: 0;
+}

@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+<s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009"
+         xmlns:s="library://ns.adobe.com/flex/spark"
+         creationComplete="onCreationComplete(event)"
+         skinClass="ui.skins.PanelSkinWhiteWithShadow">
+    <fx:Script><![CDATA[
+        import characterAndGear.Character;
+
+        import mx.collections.ArrayCollection;
+        import mx.events.FlexEvent;
+
+        private var _character:Character;
+
+        public function set character(value:Character):void
+        {
+            _character = value;
+            update();
+        }
+
+        private function update():void
+        {
+            if (!_character)
+                return;
+
+            // Properties
+            labelName.text = "Name: " + _character.name;
+            labelLevel.text = "Level: " + _character.level;
+            labelExperience.text = "Experience: " + _character.experience + "/" + _character.experienceNeeded;
+            labelSkillPoints.text = "Skill Points: " + _character.skillPoints;
+            labelHealth.text = "Health: " + _character.health;
+            labelStamina.text = "Stamina: " + _character.stamina;
+            labelCareer.text = "Career: " + _character.career.name;
+
+            // Primary Attributes
+            labelStrength.text = "STR " + _character.strength.value;
+            labelDefense.text = "DEF " + _character.defense.value;
+            labelAgility.text = "AGI " + _character.agility.value;
+            labelAura.text = "AUR " + _character.aura.value;
+            labelPerception.text = "PER " + _character.perception.value;
+            labelLuck.text = "LUC " + _character.luck.value;
+
+            // Bound Attributes
+            listAttributes.dataProvider = new ArrayCollection([
+                _character.meleeWeaponSkill,
+                _character.meleeWeaponAccuracy,
+                _character.healthPool,
+                _character.armorSkill,
+                _character.physicalResistance,
+                _character.blockChance,
+                _character.accuracy,
+                _character.evade,
+                _character.speed,
+                _character.staminaPool,
+                _character.rangedWeaponSkill,
+                _character.discount,
+                _character.intimidation,
+                _character.charm,
+                _character.crafting,
+                _character.loot,
+                _character.healthRegeneration,
+                _character.staminaRegeneration,
+                _character.lifeSteal,
+                _character.preventKnockout,
+                _character.fireResistance,
+                _character.iceResistance,
+                _character.shockResistance,
+                _character.poisonResistance
+            ])
+        }
+
+        private function onCreationComplete(event:FlexEvent):void
+        {
+            update();
+        }
+        ]]></fx:Script>
+    <s:VGroup width="100%"
+              height="100%">
+        <s:Scroller width="100%"
+                    height="100%">
+            <s:VGroup width="100%">
+                <s:HGroup width="100%">
+                    <s:Label id="labelName"
+                             width="100%" />
+                    <s:Label id="labelLevel"
+                             width="100%" />
+                    <s:Label id="labelExperience"
+                             width="100%" />
+
+                </s:HGroup>
+
+                <s:HGroup width="100%">
+                    <s:Label id="labelHealth"
+                             width="100%" />
+                    <s:Label id="labelStamina"
+                             width="100%" />
+                    <s:Label id="labelSkillPoints"
+                             width="100%" />
+                </s:HGroup>
+
+                <s:HGroup width="100%">
+                    <s:Label id="labelCareer"
+                             width="100%" />
+                </s:HGroup>
+
+                <s:Panel width="100%">
+                    <s:HGroup width="100%"
+                              padding="5">
+                        <s:Label id="labelStrength"
+                                 textAlign="center"
+                                 fontWeight="bold"
+                                 width="100%" />
+                        <s:Label id="labelDefense"
+                                 textAlign="center"
+                                 fontWeight="bold"
+                                 width="100%" />
+                        <s:Label id="labelAgility"
+                                 textAlign="center"
+                                 fontWeight="bold"
+                                 width="100%" />
+                        <s:Label id="labelAura"
+                                 textAlign="center"
+                                 fontWeight="bold"
+                                 width="100%" />
+                        <s:Label id="labelPerception"
+                                 textAlign="center"
+                                 fontWeight="bold"
+                                 width="100%" />
+                        <s:Label id="labelLuck"
+                                 textAlign="center"
+                                 fontWeight="bold"
+                                 width="100%" />
+                    </s:HGroup>
+                </s:Panel>
+
+                <s:List id="listAttributes"
+                        width="100%"
+                        contentBackgroundAlpha="0"
+                        borderVisible="false"
+                        useVirtualLayout="false"
+                        itemRenderer="ui.renderers.AttributeItemRenderer">
+                    <s:layout>
+                        <s:VerticalLayout gap="5" />
+                    </s:layout>
+                </s:List>
+
+            </s:VGroup>
+        </s:Scroller>
+    </s:VGroup>
+</s:Panel>

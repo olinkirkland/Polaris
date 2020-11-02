@@ -1,0 +1,115 @@
+{
+  "startingAttributeDistribution": {
+    "strength": 1,
+    "defense": 1,
+    "agility": 3,
+    "aura": 2,
+    "perception": 4,
+    "luck": 3
+  },
+  "name": "scavenger",
+  "rules": [
+    {
+      "attribute": "meleeWeaponSkill",
+      "source": "strength",
+      "value": 0.05,
+      "operator": "add"
+    },
+    {
+      "attribute": "meleeWeaponAccuracy",
+      "source": "strength",
+      "value": 1,
+      "operator": "add"
+    },
+    {
+      "attribute": "staminaPool",
+      "source": "strength",
+      "value": 5,
+      "operator": "add"
+    },
+    {
+      "attribute": "healthPool",
+      "source": "defense",
+      "value": 20,
+      "operator": "add"
+    },
+    {
+      "attribute": "armorSkill",
+      "source": "defense",
+      "value": 0.05,
+      "operator": "add"
+    },
+    {
+      "attribute": "physicalResistance",
+      "source": "defense",
+      "value": 0.02,
+      "operator": "add"
+    },
+    {
+      "attribute": "blockChance",
+      "source": "defense",
+      "value": 0.02,
+      "operator": "add"
+    },
+    {
+      "attribute": "accuracy",
+      "source": "agility",
+      "value": 1,
+      "operator": "add"
+    },
+    {
+      "attribute": "evade",
+      "source": "agility",
+      "value": 1,
+      "operator": "add"
+    },
+    {
+      "attribute": "speed",
+      "source": "agility",
+      "value": 1,
+      "operator": "add"
+    },
+    {
+      "attribute": "staminaPool",
+      "source": "agility",
+      "value": 5,
+      "operator": "add"
+    },
+    {
+      "attribute": "discount",
+      "source": "aura",
+      "value": 0.01,
+      "operator": "add"
+    },
+    {
+      "attribute": "intimidation",
+      "source": "aura",
+      "value": 1,
+      "operator": "add"
+    },
+    {
+      "attribute": "charm",
+      "source": "aura",
+      "value": 1,
+      "operator": "add"
+    },
+    {
+      "attribute": "crafting",
+      "source": "perception",
+      "value": 0.5,
+      "operator": "add"
+    },
+    {
+      "attribute": "rangedWeaponSkill",
+      "source": "perception",
+      "value": 0.05,
+      "operator": "add"
+    },
+    {
+      "attribute": "loot",
+      "source": "luck",
+      "value": 1,
+      "operator": "add"
+    }
+  ]
+}
