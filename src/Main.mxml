@@ -18,6 +18,9 @@
 
         private function onCreationComplete(event:FlexEvent):void
         {
+            groupLoading.visible = true;
+            characterScreen.visible = false;
+
             DataManager.instance.loadNextInQueue(start);
         }
 
@@ -25,14 +28,31 @@
         {
             trace("@start");
             var jimbo:Character = CharacterManager.instance.getCharacter("Jimbo Jones");
-            characterScreen1.character = jimbo;
+            characterScreen.character = jimbo;
+
+            groupLoading.visible = false;
+            characterScreen.visible = true;
         }
         ]]></fx:Script>
-    <s:HGroup width="100%"
-              height="100%"
-              padding="10">
-        <screens:CharacterScreen id="characterScreen1"
-                                 width="100%"
-                                 height="100%" />
-    </s:HGroup>
+    <s:Group width="100%"
+             height="100%">
+        <s:VGroup id="groupLoading"
+                  width="100%"
+                  height="100%"
+                  horizontalAlign="center"
+                  verticalAlign="middle">
+            <s:Panel skinClass="ui.skins.PanelSkinWhiteWithShadow">
+                <s:Label text="Loading"
+                         fontWeight="bold" />
+            </s:Panel>
+        </s:VGroup>
+
+        <s:HGroup width="100%"
+                  height="100%"
+                  padding="15">
+            <screens:CharacterScreen id="characterScreen"
+                                     width="100%"
+                                     height="100%" />
+        </s:HGroup>
+    </s:Group>
 </s:WindowedApplication>
