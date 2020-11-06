@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
+                xmlns:s="library://ns.adobe.com/flex/spark"
+                creationComplete="onCreationComplete(event)"
+                autoDrawBackground="false"
+                width="100%"
+                height="100%">
+    <fx:Script><![CDATA[
+        import characterAndGear.Item;
+
+        import global.Color;
+
+        import statistics.Attribute;
+
+        import global.Util;
+
+        import mx.events.FlexEvent;
+
+        private var item:Item;
+        private var slot:String;
+
+        private function onCreationComplete(event:FlexEvent):void
+        {
+        }
+
+        override public function set data(value:Object):void
+        {
+            if (!value)
+                return;
+
+            slot = value.slot;
+            item = Item(value.item);
+
+            labelName.text = slot;
+            labelValue.text = item ? item.name : "No Item";
+        }
+        ]]>
+    </fx:Script>
+
+    <s:HGroup width="100%"
+              height="100%"
+              gap="0"
+              verticalAlign="middle">
+
+        <s:Group>
+            <s:Rect width="100%"
+                    height="100%"
+                    bottomLeftRadiusX="5"
+                    bottomLeftRadiusY="5"
+                    topLeftRadiusX="5"
+                    topLeftRadiusY="5">
+                <s:fill>
+                    <s:SolidColor color="{Color.grey}" />
+                </s:fill>
+            </s:Rect>
+
+            <s:VGroup padding="5"
+                      paddingLeft="6"
+                      paddingRight="6">
+                <s:Label id="labelName"
+                         fontWeight="bold" />
+            </s:VGroup>
+        </s:Group>
+
+        <s:Group>
+            <s:Rect width="100%"
+                    height="100%"
+                    bottomRightRadiusX="5"
+                    bottomRightRadiusY="5"
+                    topRightRadiusX="5"
+                    topRightRadiusY="5">
+                <s:fill>
+                    <s:SolidColor color="{Color.grey}"
+                                  alpha=".3" />
+                </s:fill>
+            </s:Rect>
+
+            <s:VGroup padding="5"
+                      paddingLeft="6"
+                      paddingRight="6">
+                <s:Label id="labelValue"
+                         fontWeight="bold"
+                         width="100%" />
+            </s:VGroup>
+        </s:Group>
+
+    </s:HGroup>
+
+</s:ItemRenderer>

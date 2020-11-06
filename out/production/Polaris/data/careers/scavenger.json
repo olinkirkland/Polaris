@@ -10,15 +10,9 @@
   "name": "scavenger",
   "rules": [
     {
-      "attribute": "meleeWeaponSkill",
+      "attribute": "meleeDamage",
       "source": "strength",
       "value": 0.05,
-      "operator": "add"
-    },
-    {
-      "attribute": "meleeWeaponAccuracy",
-      "source": "strength",
-      "value": 1,
       "operator": "add"
     },
     {
@@ -34,7 +28,7 @@
       "operator": "add"
     },
     {
-      "attribute": "armorSkill",
+      "attribute": "armor",
       "source": "defense",
       "value": 0.05,
       "operator": "add"
@@ -100,7 +94,7 @@
       "operator": "add"
     },
     {
-      "attribute": "rangedWeaponSkill",
+      "attribute": "rangedDamage",
       "source": "perception",
       "value": 0.05,
       "operator": "add"

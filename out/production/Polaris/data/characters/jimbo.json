@@ -10,6 +10,12 @@
     "rightHand": null,
     "leftHand": null
   },
+  "items": {
+    "head": {
+      "name": "Baseball Cap",
+      "rules": []
+    }
+  },
   "primaryAttributes": {
     "strength": {
       "add": 5,

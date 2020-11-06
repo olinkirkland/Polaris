@@ -2,9 +2,6 @@ package managers
 {
     import characterAndGear.Character;
 
-    import flash.events.Event;
-    import flash.filesystem.File;
-
     public class CharacterManager
     {
         private static var _instance:CharacterManager;

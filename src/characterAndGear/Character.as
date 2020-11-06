@@ -38,17 +38,16 @@ package characterAndGear
         public var luck:Attribute = new Attribute(Attribute.LUCK);
 
         // Bound Attributes
-        public var meleeWeaponSkill:Attribute = new Attribute(Attribute.MELEE_WEAPON_SKILL);
-        public var meleeWeaponAccuracy:Attribute = new Attribute(Attribute.MELEE_WEAPON_ACCURACY);
+        public var meleeDamage:Attribute = new Attribute(Attribute.MELEE_DAMAGE);
         public var healthPool:Attribute = new Attribute(Attribute.HEALTH_POOL);
-        public var armorSkill:Attribute = new Attribute(Attribute.ARMOR_SKILL);
+        public var armor:Attribute = new Attribute(Attribute.ARMOR);
         public var physicalResistance:Attribute = new Attribute(Attribute.PHYSICAL_RESISTANCE);
         public var blockChance:Attribute = new Attribute(Attribute.BLOCK_CHANCE);
         public var accuracy:Attribute = new Attribute(Attribute.ACCURACY);
         public var evade:Attribute = new Attribute(Attribute.EVADE);
         public var speed:Attribute = new Attribute(Attribute.SPEED);
         public var staminaPool:Attribute = new Attribute(Attribute.STAMINA_POOL);
-        public var rangedWeaponSkill:Attribute = new Attribute(Attribute.RANGED_WEAPON_SKILL);
+        public var rangedDamage:Attribute = new Attribute(Attribute.RANGED_DAMAGE);
         public var discount:Attribute = new Attribute(Attribute.DISCOUNT);
         public var intimidation:Attribute = new Attribute(Attribute.INTIMIDATION);
         public var charm:Attribute = new Attribute(Attribute.CHARM);
@@ -65,8 +64,8 @@ package characterAndGear
 
         // Attributes in Vectors
         public var primaryAttributes:Vector.<Attribute> = Vector.<Attribute>([strength, defense, agility, aura, perception, luck]);
-        public var boundAttributes:Vector.<Attribute> = Vector.<Attribute>([meleeWeaponSkill, meleeWeaponAccuracy, healthPool, armorSkill, physicalResistance,
-            blockChance, accuracy, evade, speed, staminaPool, rangedWeaponSkill, discount, intimidation, charm, crafting, loot, healthRegeneration,
+        public var boundAttributes:Vector.<Attribute> = Vector.<Attribute>([meleeDamage, healthPool, armor, physicalResistance,
+            blockChance, accuracy, evade, speed, staminaPool, rangedDamage, discount, intimidation, charm, crafting, loot, healthRegeneration,
             staminaRegeneration, lifeSteal, preventKnockout, fireResistance, iceResistance, shockResistance, poisonResistance]);
 
         public function Character()
@@ -82,10 +81,11 @@ package characterAndGear
             for each (var rule:AttributeRule in career.rules)
                 rules.push(rule);
 
-            // From items todo
-//            for each (var item:Item in gear.items)
-//                for each (rule in item.rules)
-//                    rules.push(rule);
+            // From items
+            for each (var item:Item in gear.items)
+                if (item)
+                    for each (rule in item.rules)
+                        rules.push(rule);
 
             // Clear all non-base Attribute values
             for each (var attribute:Attribute in primaryAttributes.concat(boundAttributes))
@@ -113,6 +113,10 @@ package characterAndGear
                 attribute.addValue(new AttributeValue(u.primaryAttributes[attribute.name].add, Operator.ADD, true));
                 attribute.addValue(new AttributeValue(u.primaryAttributes[attribute.name].multiply, Operator.MULTIPLY, true));
             }
+
+            c.gear = new Gear();
+            for (var slot:String in u.items)
+                c.gear[slot] = Item.fromObject(u.items[slot]);
 
             c.validate();
             return c;

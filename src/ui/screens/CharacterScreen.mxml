@@ -5,6 +5,8 @@
          skinClass="ui.skins.PanelSkinWhiteWithShadow">
     <fx:Script><![CDATA[
         import characterAndGear.Character;
+        import characterAndGear.Gear;
+        import characterAndGear.Item;
 
         import mx.collections.ArrayCollection;
         import mx.events.FlexEvent;
@@ -41,17 +43,14 @@
 
             // Bound Attributes
             listAttributes.dataProvider = new ArrayCollection([
-                _character.meleeWeaponSkill,
-                _character.meleeWeaponAccuracy,
                 _character.healthPool,
-                _character.armorSkill,
+                _character.armor,
                 _character.physicalResistance,
                 _character.blockChance,
                 _character.accuracy,
                 _character.evade,
                 _character.speed,
                 _character.staminaPool,
-                _character.rangedWeaponSkill,
                 _character.discount,
                 _character.intimidation,
                 _character.charm,
@@ -65,7 +64,18 @@
                 _character.iceResistance,
                 _character.shockResistance,
                 _character.poisonResistance
-            ])
+            ]);
+
+            // Items
+            listItems.dataProvider = new ArrayCollection();
+
+            for each (var slot:String in Gear.SLOT_NAMES)
+            {
+                listItems.dataProvider.addItem({
+                    slot: slot,
+                    item: _character.gear[slot]
+                });
+            }
         }
 
         private function onCreationComplete(event:FlexEvent):void
@@ -132,16 +142,28 @@
                     </s:HGroup>
                 </s:Panel>
 
-                <s:List id="listAttributes"
-                        width="100%"
-                        contentBackgroundAlpha="0"
-                        borderVisible="false"
-                        useVirtualLayout="false"
-                        itemRenderer="ui.renderers.AttributeItemRenderer">
-                    <s:layout>
-                        <s:VerticalLayout gap="5" />
-                    </s:layout>
-                </s:List>
+                <s:HGroup width="100%">
+                    <s:List id="listAttributes"
+                            width="100%"
+                            contentBackgroundAlpha="0"
+                            borderVisible="false"
+                            useVirtualLayout="false"
+                            itemRenderer="ui.renderers.AttributeItemRenderer">
+                        <s:layout>
+                            <s:VerticalLayout gap="5" />
+                        </s:layout>
+                    </s:List>
+                    <s:List id="listItems"
+                            width="100%"
+                            contentBackgroundAlpha="0"
+                            borderVisible="false"
+                            useVirtualLayout="false"
+                            itemRenderer="ui.renderers.ItemItemRenderer">
+                        <s:layout>
+                            <s:VerticalLayout gap="5" />
+                        </s:layout>
+                    </s:List>
+                </s:HGroup>
 
             </s:VGroup>
         </s:Scroller>

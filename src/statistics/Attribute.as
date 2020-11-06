@@ -18,17 +18,16 @@ package statistics
         public static const LUCK:String = "luck";
 
         // Bound Attributes
-        public static const MELEE_WEAPON_SKILL:String = "meleeWeaponSkill";
-        public static const MELEE_WEAPON_ACCURACY:String = "meleeWeaponAccuracy";
+        public static const MELEE_DAMAGE:String = "meleeDamage";
         public static const HEALTH_POOL:String = "healthPool";
-        public static const ARMOR_SKILL:String = "armorSkill";
+        public static const ARMOR:String = "armor";
         public static const PHYSICAL_RESISTANCE:String = "physicalResistance";
         public static const BLOCK_CHANCE:String = "blockChance";
         public static const ACCURACY:String = "accuracy";
         public static const EVADE:String = "evade";
         public static const SPEED:String = "speed";
         public static const STAMINA_POOL:String = "staminaPool";
-        public static const RANGED_WEAPON_SKILL:String = "rangedWeaponSkill";
+        public static const RANGED_DAMAGE:String = "rangedDamage";
         public static const DISCOUNT:String = "discount";
         public static const INTIMIDATION:String = "intimidation";
         public static const CHARM:String = "charm";

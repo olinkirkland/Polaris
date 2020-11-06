@@ -2,6 +2,8 @@ package characterAndGear
 {
     public class Gear
     {
+        public static const SLOT_NAMES:Vector.<String> = Vector.<String>(["head", "torso", "gloves", "legs", "boots", "rightHand", "leftHand"]);
+
         // Slots
         public var head:Item;
         public var torso:Item;
@@ -11,11 +13,13 @@ package characterAndGear
         public var rightHand:Item;
         public var leftHand:Item;
 
-        // All items
-        public var items:Vector.<Item> = Vector.<Item>([head, torso, gloves, legs, boots, rightHand, leftHand]);
-
         public function Gear()
         {
+        }
+
+        public function get items():Vector.<Item>
+        {
+            return Vector.<Item>([head, torso, gloves, legs, boots, rightHand, leftHand]);
         }
     }
 }
