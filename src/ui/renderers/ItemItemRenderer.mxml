@@ -12,7 +12,7 @@
 
         import statistics.Attribute;
 
-        import global.Util;
+        import global.Utils;
 
         import mx.events.FlexEvent;
 
@@ -31,7 +31,7 @@
             slot = value.slot;
             item = Item(value.item);
 
-            labelName.text = slot;
+            labelName.text  = slot;
             labelValue.text = item ? item.name : "No Item";
         }
         ]]>

@@ -4,14 +4,15 @@
     <configurations>
       <configuration name="Polaris" target-platform="Desktop" main-class="Main" output-file="Main.swf" output-folder="$MODULE_DIR$/out/production/Polaris">
         <dependencies target-player="30.0">
+          <entries>
+            <entry library-name="libs" library-level="project">
+              <dependency linkage="Merged" />
+            </entry>
+          </entries>
           <sdk name="ApacheAirMerged" />
         </dependencies>
         <compiler-options />
-        <packaging-air-desktop package-file-name="Main">
-          <files-to-package>
-            <FilePathAndPathInPackage file-path="$MODULE_DIR$/assets/data" path-in-package="data" />
-          </files-to-package>
-        </packaging-air-desktop>
+        <packaging-air-desktop custom-descriptor-path="$MODULE_DIR$/Main-app.xml" package-file-name="Main" />
         <packaging-android />
         <packaging-ios />
       </configuration>
@@ -25,5 +26,6 @@
     </content>
     <orderEntry type="jdk" jdkName="ApacheAirMerged" jdkType="Flex SDK Type (new)" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="libs" level="project" />
   </component>
 </module>

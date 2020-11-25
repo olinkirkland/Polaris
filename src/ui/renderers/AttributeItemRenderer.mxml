@@ -8,7 +8,7 @@
     <fx:Script><![CDATA[
         import statistics.Attribute;
 
-        import global.Util;
+        import global.Utils;
 
         import mx.events.FlexEvent;
 
@@ -25,10 +25,10 @@
 
             attribute = Attribute(value);
 
-            labelName.text = attribute.name;
-            labelValue.text = String(attribute.value);
-            colorName.color = Util.stringToLightColor(attribute.name);
-            colorValue.color = Util.stringToLightColor(attribute.name);
+            labelName.text   = attribute.name;
+            labelValue.text  = String(attribute.value);
+            colorName.color  = Utils.stringToLightColor(attribute.name);
+            colorValue.color = Utils.stringToLightColor(attribute.name);
         }
         ]]>
     </fx:Script>

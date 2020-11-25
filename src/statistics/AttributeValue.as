@@ -2,7 +2,7 @@ package statistics
 {
     import flash.events.EventDispatcher;
 
-    import global.Util;
+    import global.Utils;
 
     import mx.utils.UIDUtil;
 

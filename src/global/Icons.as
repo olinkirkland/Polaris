@@ -100,5 +100,8 @@ package global
 
         [Embed(source="/../assets/images/down.png")]
         public static const down:Class;
+
+        [Embed(source="/../assets/images/spinner.png")]
+        public static const spinner:Class;
     }
 }

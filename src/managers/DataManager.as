@@ -4,6 +4,7 @@ package managers
 
     import flash.events.Event;
     import flash.filesystem.File;
+    import flash.utils.setTimeout;
 
     import statistics.Career;
 
@@ -14,9 +15,9 @@ package managers
         private var onCompleteCallback:Function;
 
         private var loadingQueue:Array = [
-            {path: "careers", callback: parseCareer},
-            {path: "characters", callback: parseCharacter},
-            {path: "items", callback: parseItems}
+//            {path: "careers", callback: parseCareer},
+//            {path: "character templates", callback: parseCharacterTemplate},
+//            {path: "items", callback: parseItems}
         ];
 
         public function DataManager()
@@ -33,15 +34,20 @@ package managers
             return _instance;
         }
 
-        public function loadNextInQueue(onCompleteCallback:Function):void
+        private function loadNextInQueue():void
         {
-            this.onCompleteCallback = onCompleteCallback;
+            // todo remove this if statement because there will always be entries in the loading queue
+            if (loadingQueue.length == 0)
+            {
+                setTimeout(onCompleteCallback, 500);
+                return;
+            }
 
             var u:Object = loadingQueue.shift();
             loadDataInPath(u.path, u.callback);
         }
 
-        public function loadDataInPath(path:String, onDataLoaded:Function):void
+        private function loadDataInPath(path:String, onDataLoaded:Function):void
         {
             trace("Loading " + path);
             var file:File = File.applicationDirectory.resolvePath("data/" + path);
@@ -72,7 +78,7 @@ package managers
                 // Data group fully loaded
                 if (loadingQueue.length > 0)
                 {
-                    loadNextInQueue(onCompleteCallback);
+                    loadNextInQueue();
                     return;
                 }
 
@@ -86,14 +92,15 @@ package managers
             CareerManager.instance.addCareer(Career.fromObject(data));
         }
 
-        private function parseCharacter(data:Object):void
-        {
-            CharacterManager.instance.addCharacter(Character.fromObject(data));
-        }
-
         private function parseItems(data:Object):void
         {
 
+        }
+
+        public function load(onCompleteCallback:Function):void
+        {
+            this.onCompleteCallback = onCompleteCallback;
+            loadNextInQueue();
         }
     }
 }

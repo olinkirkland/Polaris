@@ -1,6 +1,10 @@
 package global
 {
-    public class Util
+    import flash.display.DisplayObject;
+    import flash.geom.Matrix;
+    import flash.geom.Rectangle;
+
+    public class Utils
     {
         public static function secondsSince(d:Date):Number
         {
@@ -23,7 +27,7 @@ package global
         public static function stringToColor(str:String):uint
         {
             var modifier:int = 1;
-            var seed:int = 0;
+            var seed:int     = 0;
             for (var i:int = 0; i < str.length; i++)
             {
                 seed = str.charCodeAt(i) + ((seed << 5) - seed);
@@ -75,7 +79,7 @@ package global
         public static function isLight(color:uint):Boolean
         {
             var rgb:Object = hexToRgb(color);
-            var a:Number = (rgb.r * 0.299) + (rgb.g * 0.587) + (rgb.b * 0.114);
+            var a:Number   = (rgb.r * 0.299) + (rgb.g * 0.587) + (rgb.b * 0.114);
             return a > 186;
         }
 

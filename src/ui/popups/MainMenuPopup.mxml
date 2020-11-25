@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<popups:Popup xmlns:fx="http://ns.adobe.com/mxml/2009"
+              xmlns:popups="ui.popups.*"
+              xmlns:s="library://ns.adobe.com/flex/spark"
+              skinClass="ui.skins.PanelSkinWhiteWithShadow">
+
+    <fx:Script><![CDATA[
+        import mx.events.FlexEvent;
+
+        override public function onCreationComplete(event:FlexEvent):void
+        {
+            super.onCreationComplete(event);
+        }
+
+        private function onClickButtonClose(event:MouseEvent):void
+        {
+            close();
+        }
+        ]]>
+    </fx:Script>
+
+    <s:VGroup horizontalAlign="center">
+        <s:Label text="Main Menu" />
+        <s:Button id="buttonSave"
+                  label="Save Game" />
+        <s:Button id="buttonLoad"
+                  label="Load Game" />
+        <s:Button id="buttonClose"
+                  label="Close"
+                  click="onClickButtonClose(event)" />
+    </s:VGroup>
+
+</popups:Popup>

@@ -5,7 +5,7 @@ package statistics
 
     import global.Operator;
 
-    import global.Util;
+    import global.Utils;
 
     public class Attribute extends EventDispatcher
     {
@@ -69,7 +69,7 @@ package statistics
                     multiply += v.quantity;
             }
 
-            return Util.fixed(add * multiply);
+            return Utils.fixed(add * multiply);
         }
 
         public function baseValue():Object

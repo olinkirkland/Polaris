@@ -1,58 +1,113 @@
 <?xml version="1.0"?>
 <s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
                        xmlns:s="library://ns.adobe.com/flex/spark"
-                       xmlns:screens="ui.screens.*"
                        width="480"
                        height="860"
+                       frameRate="60"
                        showStatusBar="false"
                        creationComplete="onCreationComplete(event)">
     <fx:Style source="../assets/css/global.css" />
     <fx:Script><![CDATA[
-        import characterAndGear.Character;
+        import events.PopupEvent;
 
-        import managers.CharacterManager;
+        import global.Color;
 
         import managers.DataManager;
+        import managers.PopupManager;
+        import managers.Signal;
 
         import mx.events.FlexEvent;
 
+        import ui.popups.LoadingPopup;
+        import ui.popups.MainMenuPopup;
+        import ui.popups.Popup;
+
         private function onCreationComplete(event:FlexEvent):void
         {
-            groupLoading.visible = true;
-            characterScreen.visible = false;
+            addEventListeners();
 
-            DataManager.instance.loadNextInQueue(start);
+            PopupManager.open(new LoadingPopup());
+            DataManager.instance.load(onDataManagerLoaded);
+        }
+
+        private function addEventListeners():void
+        {
+            Signal.instance.addEventListener(PopupEvent.OPEN, function (event:PopupEvent)
+            {
+                openPopup(event.popup);
+            });
+
+            Signal.instance.addEventListener(PopupEvent.CLOSE, function (event:PopupEvent)
+            {
+                closePopup();
+            });
+        }
+
+        private function onDataManagerLoaded():void
+        {
+            PopupManager.close();
+
+            // Start
+            start();
         }
 
         private function start():void
         {
-            trace("@start");
-            var jimbo:Character = CharacterManager.instance.getCharacter("Jimbo Jones");
-            characterScreen.character = jimbo;
+        }
 
-            groupLoading.visible = false;
-            characterScreen.visible = true;
+        private function onClickButtonMainMenu(event:MouseEvent):void
+        {
+            PopupManager.open(new MainMenuPopup());
+        }
+
+        private function openPopup(popup:Popup):void
+        {
+            closePopup();
+            modalGroup.visible = true;
+            popupGroup.addElement(popup);
+        }
+
+        private function closePopup():void
+        {
+            // Close all existing popups
+            // Expect only one popup at a time since popups are designed to be modal only
+            modalGroup.visible = false;
+            while (popupGroup.numElements > 0)
+                Popup(popupGroup.getElementAt(0)).close();
         }
         ]]></fx:Script>
     <s:Group width="100%"
              height="100%">
-        <s:VGroup id="groupLoading"
-                  width="100%"
+
+        <!--Main Menu Button-->
+        <s:VGroup width="100%"
                   height="100%"
-                  horizontalAlign="center"
-                  verticalAlign="middle">
-            <s:Panel skinClass="ui.skins.PanelSkinWhiteWithShadow">
-                <s:Label text="Loading"
-                         fontWeight="bold" />
-            </s:Panel>
+                  padding="10"
+                  horizontalAlign="right">
+            <s:Button id="buttonMainMenu"
+                      label="Main Menu"
+                      click="onClickButtonMainMenu(event)" />
         </s:VGroup>
 
-        <s:HGroup width="100%"
-                  height="100%"
-                  padding="15">
-            <screens:CharacterScreen id="characterScreen"
-                                     width="100%"
-                                     height="100%" />
-        </s:HGroup>
+        <!--Popups-->
+        <s:Group id="modalGroup"
+                 width="100%"
+                 height="100%">
+            <s:Rect width="100%"
+                    height="100%">
+
+                <s:fill>
+                    <s:SolidColor color="{Color.black}"
+                                  alpha=".6" />
+                </s:fill>
+            </s:Rect>
+            <s:VGroup id="popupGroup"
+                      width="100%"
+                      height="100%"
+                      horizontalAlign="center"
+                      verticalAlign="middle">
+            </s:VGroup>
+        </s:Group>
+
     </s:Group>
 </s:WindowedApplication>

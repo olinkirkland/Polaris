@@ -13,13 +13,13 @@ package characterAndGear
 
         public static function fromObject(u:Object):Item
         {
-            var t:Item = new Item();
-            t.name = u.name;
-            t.rules = new Vector.<AttributeRule>();
+            var item:Item = new Item();
+            item.name = u.name;
+            item.rules = new Vector.<AttributeRule>();
             for each (var r:Object in u.rules)
-                t.rules.push(AttributeRule.fromObject(r));
+                item.rules.push(AttributeRule.fromObject(r));
 
-            return t;
+            return item;
         }
     }
 }

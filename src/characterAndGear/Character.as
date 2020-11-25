@@ -99,7 +99,7 @@ package characterAndGear
                 targetAttribute.addValue(new AttributeValue(valueAttribute.value * rule.value, rule.operator));
             }
 
-            trace("Validation complete");
+            trace("@Character validated");
         }
 
         public static function fromObject(u:Object):Character
@@ -118,7 +118,6 @@ package characterAndGear
             for (var slot:String in u.items)
                 c.gear[slot] = Item.fromObject(u.items[slot]);
 
-            c.validate();
             return c;
         }
 
