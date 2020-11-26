@@ -2,7 +2,6 @@
 
 <s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009"
                    xmlns:s="library://ns.adobe.com/flex/spark"
-                   xmlns:ui="ui.*"
                    creationComplete="onCreationComplete(event)"
                    autoIconManagement="false"
                    width="100%">
@@ -20,10 +19,6 @@
 
         private function onCreationComplete(event:FlexEvent):void
         {
-//            var t:ColorTransform = iconDisplay.transform.colorTransform;
-//            t.color = Color.darkBody;
-//            iconDisplay.transform.colorTransform = t;
-
             if (Label(labelDisplay).text.length == 0)
                 Label(labelDisplay).includeInLayout = false;
         }
@@ -80,12 +75,9 @@
                            height="16"
                            smooth="true" />
 
-            <ui:VerticalDivider includeInLayout="{iconDisplay.source}" />
-
             <s:Label id="labelDisplay"
                      width="100%"
-                     maxDisplayedLines="1"
-                     showTruncationTip="true"
+                     textAlign="center"
                      styleName="primary" />
 
         </s:HGroup>

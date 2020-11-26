@@ -5,6 +5,8 @@
               skinClass="ui.skins.PanelSkinWhiteWithShadow">
 
     <fx:Script><![CDATA[
+        import global.Icons;
+
         import mx.events.FlexEvent;
 
         override public function onCreationComplete(event:FlexEvent):void
@@ -22,12 +24,19 @@
     <s:VGroup horizontalAlign="center">
         <s:Label text="Main Menu" />
         <s:Button id="buttonSave"
-                  label="Save Game" />
+                  width="100%"
+                  icon="{Icons.save}"
+                  label="Save Game"
+                  skinClass="ui.skins.button.ButtonSkinFullWidth" />
         <s:Button id="buttonLoad"
-                  label="Load Game" />
+                  width="100%"
+                  label="Load Game"
+                  skinClass="ui.skins.button.ButtonSkinFullWidth" />
         <s:Button id="buttonClose"
-                  label="Close"
-                  click="onClickButtonClose(event)" />
+                  width="100%"
+                  label="Back"
+                  click="onClickButtonClose(event)"
+                  skinClass="ui.skins.button.ButtonSkinFullWidth" />
     </s:VGroup>
 
 </popups:Popup>
