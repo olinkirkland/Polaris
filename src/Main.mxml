@@ -8,6 +8,8 @@
                        creationComplete="onCreationComplete(event)">
     <fx:Style source="../assets/css/global.css" />
     <fx:Script><![CDATA[
+        import com.greensock.TweenLite;
+
         import events.PopupEvent;
 
         import global.Color;
@@ -65,6 +67,8 @@
             closePopup();
             modalGroup.visible = true;
             popupGroup.addElement(popup);
+
+            TweenLite.fromTo(popup, .6, {alpha: 0}, {alpha: 1});
         }
 
         private function closePopup():void

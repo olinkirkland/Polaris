@@ -14,35 +14,15 @@
             super.onCreationComplete(event);
         }
 
-        private function onClickButtonSave(event:MouseEvent):void
-        {
-            PopupManager.open(new SavePopup());
-        }
-
-        private function onClickButtonLoad(event:MouseEvent):void
-        {
-            PopupManager.open(new LoadPopup());
-        }
-
         private function onClickButtonClose(event:MouseEvent):void
         {
-            close();
+            PopupManager.open(new MainMenuPopup());
         }
         ]]>
     </fx:Script>
 
     <s:VGroup horizontalAlign="center">
-        <s:Label text="Main Menu" />
-        <s:Button id="buttonSave"
-                  width="100%"
-                  label="Save"
-                  click="onClickButtonSave(event)"
-                  skinClass="ui.skins.button.ButtonSkinFullWidth" />
-        <s:Button id="buttonLoad"
-                  width="100%"
-                  label="Load"
-                  click="onClickButtonLoad(event)"
-                  skinClass="ui.skins.button.ButtonSkinFullWidth" />
+        <s:Label text="Save Game" />
         <s:Button id="buttonClose"
                   width="100%"
                   label="Back"

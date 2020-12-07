@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<popups:Popup xmlns:fx="http://ns.adobe.com/mxml/2009"
+              xmlns:popups="ui.popups.*"
+              xmlns:s="library://ns.adobe.com/flex/spark"
+              skinClass="ui.skins.PanelSkinWhiteWithShadow">
+
+    <fx:Script><![CDATA[
+        import managers.PopupManager;
+
+        import mx.events.FlexEvent;
+
+        override public function onCreationComplete(event:FlexEvent):void
+        {
+            super.onCreationComplete(event);
+        }
+
+        private function onClickButtonClose(event:MouseEvent):void
+        {
+            PopupManager.open(new MainMenuPopup());
+        }
+        ]]>
+    </fx:Script>
+
+    <s:VGroup horizontalAlign="center">
+        <s:Label text="Load Game" />
+        <s:HGroup width="100%">
+            <s:List id="listGames"
+                    width="300">
+
+            </s:List>
+            <s:VGroup width="300">
+                <s:Label id="labelSave"
+                         width="100%" />
+                <s:Label id="labelTimePlayed"
+                         width="100%" />
+                <s:Button id="buttonLoad"
+                          width="100%"
+                          label="Load Game"
+                          click="onClickButtonClose(event)"
+                          skinClass="ui.skins.button.ButtonSkinFullWidth" />
+                <s:Button id="buttonDelete"
+                          width="100%"
+                          label="Delete Save"
+                          click="onClickButtonClose(event)"
+                          skinClass="ui.skins.button.ButtonSkinFullWidth" />
+            </s:VGroup>
+        </s:HGroup>
+        <s:Button id="buttonClose"
+                  width="100%"
+                  label="Back"
+                  click="onClickButtonClose(event)"
+                  skinClass="ui.skins.button.ButtonSkinFullWidth" />
+    </s:VGroup>
+
+</popups:Popup>
