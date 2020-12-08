@@ -35,6 +35,9 @@ package global
         [Embed(source="/../assets/images/remove.png")]
         public static const remove:Class;
 
+        [Embed(source="/../assets/images/trash.png")]
+        public static const trash:Class;
+
         [Embed(source="/../assets/images/check.png")]
         public static const check:Class;
 

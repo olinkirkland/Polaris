@@ -11,7 +11,12 @@ package global
         {
             var d:Date = new Date();
             d.time     = t;
-            return d.month + "/" + d.date + "/" + d.fullYear + " " + d.hours + ":" + d.minutes;
+            return d.month + "/" + d.date + "/" + d.fullYear + " " + addZeroIfSingleDigit(d.hours) + ":" + addZeroIfSingleDigit(d.minutes);
+        }
+
+        public static function addZeroIfSingleDigit(n:int):String
+        {
+            return (n > 9 ? "" : "0") + n;
         }
 
         public static function toArray(iterable:*):Array

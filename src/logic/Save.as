@@ -1,12 +1,14 @@
 package logic
 {
+    import flash.filesystem.File;
+
     public class Save
     {
         public var name:String;
         public var time:Number;
         public var data:Object;
 
-        public var size:Number;
+        public var file:File;
 
         public function Save()
         {

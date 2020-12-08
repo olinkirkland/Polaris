@@ -11,6 +11,7 @@ package logic
     public class SaveManager
     {
         private static var _instance:SaveManager;
+        private var saves:Array = [];
 
         public function SaveManager()
         {
@@ -59,7 +60,7 @@ package logic
                 d.createDirectory();
             var files:Array = d.getDirectoryListing();
 
-            var saves:Array = [];
+            var arr:Array = [];
             load(null);
 
             function load(event:Event):void
@@ -71,8 +72,8 @@ package logic
                     try
                     {
                         var save:Save = Save.fromObject(JSON.parse(String(f.data)));
-                        save.size     = f.size;
-                        saves.push(save);
+                        save.file     = f;
+                        arr.push(save);
                     } catch (error:Error)
                     {
                         // There was a problem loading a file
@@ -82,6 +83,7 @@ package logic
 
                 if (files.length == 0)
                 {
+                    saves = arr;
                     callback.apply(null, [saves]);
                     return;
                 }

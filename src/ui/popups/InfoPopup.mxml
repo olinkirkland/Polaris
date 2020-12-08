@@ -10,6 +10,7 @@
         import mx.events.FlexEvent;
 
         public var text:String;
+        public var popupOnClose:Popup;
 
         override public function onCreationComplete(event:FlexEvent):void
         {
@@ -18,7 +19,10 @@
 
         private function onClickButtonClose(event:MouseEvent):void
         {
-            PopupManager.open(new MainMenuPopup());
+            if (popupOnClose)
+                PopupManager.open(popupOnClose);
+            else
+                PopupManager.close();
         }
         ]]>
     </fx:Script>

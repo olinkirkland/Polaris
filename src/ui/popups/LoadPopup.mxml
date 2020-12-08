@@ -5,47 +5,94 @@
               skinClass="ui.skins.PanelSkinWhiteWithShadow">
 
     <fx:Script><![CDATA[
-        import logic.PopupManager;
+        import events.PayloadEvent;
 
+        import logic.PopupManager;
+        import logic.Save;
+        import logic.SaveManager;
+
+        import mx.collections.ArrayCollection;
         import mx.events.FlexEvent;
 
         override public function onCreationComplete(event:FlexEvent):void
         {
             super.onCreationComplete(event);
+
+            addEventListener(PayloadEvent.DELETE, onDeleteFile);
+
+            validateListSaves();
+        }
+
+        private function validateListSaves():void
+        {
+            labelList.text    = "Loading";
+            labelList.visible = !listSaves.dataProvider || listSaves.dataProvider.length == 0;
+
+            SaveManager.instance.getSavesAsync(function (saves:Array):void
+            {
+                listSaves.dataProvider = new ArrayCollection(saves);
+
+                labelList.text    = "No saves found";
+                labelList.visible = listSaves.dataProvider.length == 0;
+            });
         }
 
         private function onClickButtonClose(event:MouseEvent):void
         {
             PopupManager.open(new MainMenuPopup());
         }
+
+        private function onClickButtonLoad(event:MouseEvent):void
+        {
+
+        }
+
+        override public function dispose():void
+        {
+            super.dispose();
+            removeEventListener(PayloadEvent.DELETE, onDeleteFile);
+        }
+
+        private function onDeleteFile(event:PayloadEvent):void
+        {
+            event.stopPropagation();
+
+            var save:Save = event.payload as Save;
+            save.file.deleteFile();
+            validateListSaves();
+        }
         ]]>
     </fx:Script>
 
-    <s:VGroup horizontalAlign="center">
+    <s:VGroup horizontalAlign="center"
+              width="400">
         <s:Label text="Load Game" />
-        <s:HGroup>
-            <s:List id="listGames"
-                    width="300"
-                    itemRenderer="ui.renderers.SaveItemRenderer" />
-            <s:VGroup width="100"
-                      visible="{listGames.selectedIndex >= 0}"
-                      includeInLayout="{listGames.selectedIndex >= 0}">
-                <s:Label id="labelSaveName"
-                         width="100%" />
-                <s:Label id="labelTime"
-                         width="100%" />
-                <s:Button id="buttonLoad"
-                          width="100%"
-                          label="Load Game"
-                          click="onClickButtonClose(event)"
-                          skinClass="ui.skins.button.ButtonSkinFullWidth" />
-                <s:Button id="buttonDelete"
-                          width="100%"
-                          label="Delete Save"
-                          click="onClickButtonClose(event)"
-                          skinClass="ui.skins.button.ButtonSkinFullWidth" />
-            </s:VGroup>
-        </s:HGroup>
+        <s:Panel width="100%"
+                 height="300">
+            <s:Group width="100%"
+                     height="100%">
+                <s:List id="listSaves"
+                        width="100%"
+                        height="100%"
+                        requireSelection="true"
+                        itemRenderer="ui.renderers.LoadItemRenderer">
+                    <s:layout>
+                        <s:VerticalLayout gap="5" />
+                    </s:layout>
+                </s:List>
+                <s:VGroup width="100%"
+                          height="100%"
+                          horizontalAlign="center"
+                          verticalAlign="middle">
+                    <s:Label id="labelList" />
+                </s:VGroup>
+            </s:Group>
+        </s:Panel>
+        <s:Button id="buttonLoad"
+                  width="100%"
+                  label="Load Game"
+                  click="onClickButtonLoad(event)"
+                  skinClass="ui.skins.button.ButtonSkinFullWidth" />
         <s:Button id="buttonClose"
                   width="100%"
                   label="Back"

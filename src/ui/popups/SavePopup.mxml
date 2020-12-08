@@ -43,6 +43,7 @@
             SaveManager.instance.save(inputSaveGameName.text);
             var infoPopup:InfoPopup = new InfoPopup();
             infoPopup.text          = "Game saved";
+            infoPopup.popupOnClose  = new SavePopup();
             PopupManager.open(infoPopup);
         }
         ]]>
