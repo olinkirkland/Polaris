@@ -14,9 +14,9 @@
 
         import global.Color;
 
-        import managers.DataManager;
-        import managers.PopupManager;
-        import managers.Signal;
+        import logic.AssetManager;
+        import logic.PopupManager;
+        import logic.Signal;
 
         import mx.events.FlexEvent;
 
@@ -29,17 +29,17 @@
             addEventListeners();
 
             PopupManager.open(new LoadingPopup());
-            DataManager.instance.load(onDataManagerLoaded);
+            AssetManager.instance.load(onDataManagerLoaded);
         }
 
         private function addEventListeners():void
         {
-            Signal.instance.addEventListener(PopupEvent.OPEN, function (event:PopupEvent)
+            Signal.instance.addEventListener(PopupEvent.OPEN, function (event:PopupEvent):void
             {
                 openPopup(event.popup);
             });
 
-            Signal.instance.addEventListener(PopupEvent.CLOSE, function (event:PopupEvent)
+            Signal.instance.addEventListener(PopupEvent.CLOSE, function (event:PopupEvent):void
             {
                 closePopup();
             });
@@ -65,10 +65,9 @@
         private function openPopup(popup:Popup):void
         {
             closePopup();
+
             modalGroup.visible = true;
             popupGroup.addElement(popup);
-
-            TweenLite.fromTo(popup, .6, {alpha: 0}, {alpha: 1});
         }
 
         private function closePopup():void

@@ -1,4 +1,4 @@
-package managers
+package logic
 {
     import characterAndGear.Character;
 
@@ -8,9 +8,9 @@ package managers
 
     import statistics.Career;
 
-    public class DataManager
+    public class AssetManager
     {
-        private static var _instance:DataManager;
+        private static var _instance:AssetManager;
 
         private var onCompleteCallback:Function;
 
@@ -20,17 +20,17 @@ package managers
 //            {path: "items", callback: parseItems}
         ];
 
-        public function DataManager()
+        public function AssetManager()
         {
             if (_instance)
                 throw new Error("Singletons can only have one instance");
             _instance = this;
         }
 
-        public static function get instance():DataManager
+        public static function get instance():AssetManager
         {
             if (!_instance)
-                new DataManager();
+                new AssetManager();
             return _instance;
         }
 
@@ -44,10 +44,10 @@ package managers
             }
 
             var u:Object = loadingQueue.shift();
-            loadDataInPath(u.path, u.callback);
+            loadAssetsFromDirectory(u.path, u.callback);
         }
 
-        private function loadDataInPath(path:String, onDataLoaded:Function):void
+        private function loadAssetsFromDirectory(path:String, onDataLoaded:Function):void
         {
             trace("Loading " + path);
             var file:File = File.applicationDirectory.resolvePath("data/" + path);

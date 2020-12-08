@@ -1,10 +1,11 @@
-package state
+package logic
 {
+    import state.*;
+
     public class GameState
     {
         private static var _instance:GameState;
 
-        public var name:String;
         public var inventory:Inventory;
 
         public function GameState()
@@ -22,15 +23,14 @@ package state
         }
 
 
-        public function load(data:Object):void
+        public function parse(data:Object):void
         {
-            name      = data.name;
             inventory = Inventory.fromObject(data.inventory);
         }
 
-        public function save(name:String):void
+        public function toObject():Object
         {
-
+            return {};
         }
     }
 }

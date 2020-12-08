@@ -1,14 +1,17 @@
 package global
 {
-    import flash.display.DisplayObject;
-    import flash.geom.Matrix;
-    import flash.geom.Rectangle;
-
     public class Utils
     {
         public static function secondsSince(d:Date):Number
         {
             return Number(((new Date().time - d.time) / 1000).toFixed(4));
+        }
+
+        public static function formatTime(t:Number):String
+        {
+            var d:Date = new Date();
+            d.time     = t;
+            return d.month + "/" + d.date + "/" + d.fullYear + " " + d.hours + ":" + d.minutes;
         }
 
         public static function toArray(iterable:*):Array

@@ -8,9 +8,9 @@
     <fx:Script><![CDATA[
         import events.PopupEvent;
 
-        import managers.PopupManager;
+        import logic.PopupManager;
 
-        import managers.Signal;
+        import logic.Signal;
 
         import mx.events.FlexEvent;
 

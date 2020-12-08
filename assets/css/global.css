@@ -94,6 +94,11 @@ s|Panel {
     skinClass: ClassReference("ui.skins.PanelSkin");
 }
 
+s|List {
+    borderVisible: false;
+    contentBackgroundAlpha: 0;
+}
+
 s|DropDownList {
     skinClass: ClassReference("ui.skins.DropDownListSkin");
 }

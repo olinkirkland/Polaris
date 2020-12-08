@@ -5,7 +5,7 @@
               skinClass="ui.skins.PanelSkinWhiteWithShadow">
 
     <fx:Script><![CDATA[
-        import managers.PopupManager;
+        import logic.PopupManager;
 
         import mx.events.FlexEvent;
 
@@ -23,15 +23,16 @@
 
     <s:VGroup horizontalAlign="center">
         <s:Label text="Load Game" />
-        <s:HGroup width="100%">
+        <s:HGroup>
             <s:List id="listGames"
-                    width="300">
-
-            </s:List>
-            <s:VGroup width="300">
-                <s:Label id="labelSave"
+                    width="300"
+                    itemRenderer="ui.renderers.SaveItemRenderer" />
+            <s:VGroup width="100"
+                      visible="{listGames.selectedIndex >= 0}"
+                      includeInLayout="{listGames.selectedIndex >= 0}">
+                <s:Label id="labelSaveName"
                          width="100%" />
-                <s:Label id="labelTimePlayed"
+                <s:Label id="labelTime"
                          width="100%" />
                 <s:Button id="buttonLoad"
                           width="100%"

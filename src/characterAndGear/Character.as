@@ -2,7 +2,7 @@ package characterAndGear
 {
     import global.Operator;
 
-    import managers.CareerManager;
+    import logic.CareerManager;
 
     import statistics.*;
     import statistics.Career;
