@@ -8,14 +8,14 @@
                        creationComplete="onCreationComplete(event)">
     <fx:Style source="../assets/css/global.css" />
     <fx:Script><![CDATA[
-        import com.greensock.TweenLite;
-
         import events.PopupEvent;
 
         import global.Color;
 
         import logic.AssetManager;
+        import logic.GameState;
         import logic.PopupManager;
+        import logic.SaveManager;
         import logic.Signal;
 
         import mx.events.FlexEvent;
@@ -30,6 +30,12 @@
 
             PopupManager.open(new LoadingPopup());
             AssetManager.instance.load(onDataManagerLoaded);
+            SaveManager.instance.addEventListener(SaveManager.GAME_LOADED, onGameLoaded);
+        }
+
+        private function onGameLoaded(event:Event):void
+        {
+            labelSaveGameName.text = GameState.instance.name;
         }
 
         private function addEventListeners():void
@@ -87,9 +93,12 @@
                   height="100%"
                   padding="10"
                   horizontalAlign="right">
-            <s:Button id="buttonMainMenu"
-                      label="Main Menu"
-                      click="onClickButtonMainMenu(event)" />
+            <s:HGroup>
+                <s:Label id="labelSaveGameName" />
+                <s:Button id="buttonMainMenu"
+                          label="Menu"
+                          click="onClickButtonMainMenu(event)" />
+            </s:HGroup>
         </s:VGroup>
 
         <!--Popups-->

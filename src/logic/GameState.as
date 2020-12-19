@@ -6,6 +6,7 @@ package logic
     {
         private static var _instance:GameState;
 
+        public var name:String;
         public var inventory:Inventory;
 
         public function GameState()
@@ -22,15 +23,18 @@ package logic
             return _instance;
         }
 
-
         public function parse(data:Object):void
         {
+            name      = data.name;
             inventory = Inventory.fromObject(data.inventory);
         }
 
         public function toObject():Object
         {
-            return {};
+            return {
+                name:      name,
+                inventory: inventory.toObject()
+            };
         }
     }
 }

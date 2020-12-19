@@ -44,7 +44,7 @@
 
         private function onClickButtonLoad(event:MouseEvent):void
         {
-
+            SaveManager.instance.loadGame((listSaves.selectedItem as Save).data);
         }
 
         override public function dispose():void

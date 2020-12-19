@@ -40,7 +40,7 @@
 
         private function onClickButtonSave(event:MouseEvent):void
         {
-            SaveManager.instance.save(inputSaveGameName.text);
+            SaveManager.instance.saveGame(inputSaveGameName.text);
             var infoPopup:InfoPopup = new InfoPopup();
             infoPopup.text          = "Game saved";
             infoPopup.popupOnClose  = new SavePopup();

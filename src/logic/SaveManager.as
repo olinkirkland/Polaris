@@ -8,8 +8,14 @@ package logic
 
     import logic.GameState;
 
-    public class SaveManager
+    public class SaveManager extends EventDispatcher
     {
+        [Embed(source="/../assets/data/newGame.json", mimeType="application/octet-stream")]
+        private static const newGame:Class;
+
+        public static const GAME_SAVED:String  = "GAME_SAVED";
+        public static const GAME_LOADED:String = "GAME_LOADED";
+
         private static var _instance:SaveManager;
         private var saves:Array = [];
 
@@ -27,7 +33,12 @@ package logic
             return _instance;
         }
 
-        public function save(name:String):void
+        public function loadNewGame():void
+        {
+            loadGame(JSON.parse(new newGame()));
+        }
+
+        public function saveGame(name:String):void
         {
             // Save by name
             var data:Object = GameState.instance.toObject();
@@ -39,18 +50,15 @@ package logic
             stream.open(f, FileMode.WRITE);
             stream.writeUTFBytes(JSON.stringify(data));
             stream.close();
+
+            dispatchEvent(new Event(GAME_SAVED));
         }
 
-        public function load(name:String):void
+        public function loadGame(data:Object):void
         {
             // Load by name
-            var f:File            = File.applicationStorageDirectory.resolvePath("saves/" + name + ".json");
-            var stream:FileStream = new FileStream();
-            stream.open(f, FileMode.READ);
-            var data:Object = JSON.parse(stream.readUTFBytes(stream.bytesAvailable));
-            stream.close();
-
             GameState.instance.parse(data);
+            dispatchEvent(new Event(GAME_LOADED));
         }
 
         public function getSavesAsync(callback:Function):void

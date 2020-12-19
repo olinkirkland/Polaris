@@ -6,6 +6,7 @@
 
     <fx:Script><![CDATA[
         import logic.PopupManager;
+        import logic.SaveManager;
 
         import mx.events.FlexEvent;
 
@@ -17,6 +18,11 @@
         private function onClickButtonSave(event:MouseEvent):void
         {
             PopupManager.open(new SavePopup());
+        }
+
+        private function onClickButtonNewGame(event:MouseEvent):void
+        {
+            SaveManager.instance.loadNewGame();
         }
 
         private function onClickButtonLoad(event:MouseEvent):void
@@ -32,7 +38,12 @@
     </fx:Script>
 
     <s:VGroup horizontalAlign="center">
-        <s:Label text="Main Menu" />
+        <s:Label text="Menu" />
+        <s:Button id="buttonNewGame"
+                  width="100%"
+                  label="New Game"
+                  click="onClickButtonNewGame(event)"
+                  skinClass="ui.skins.button.ButtonSkinFullWidth" />
         <s:Button id="buttonSave"
                   width="100%"
                   label="Save"

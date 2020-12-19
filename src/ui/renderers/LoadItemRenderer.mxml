@@ -43,6 +43,18 @@
         ]]>
     </fx:Script>
 
+    <s:states>
+        <s:State name="normal" />
+        <s:State name="disabled" />
+        <s:State name="disabledAndSelected" />
+        <s:State name="down" />
+        <s:State name="downAndSelected" />
+        <s:State name="over" />
+        <s:State name="overAndSelected" />
+        <s:State name="up" />
+        <s:State name="upAndSelected" />
+    </s:states>
+
     <s:HGroup width="100%"
               height="100%"
               gap="0"
@@ -64,11 +76,28 @@
                       paddingLeft="6"
                       paddingRight="6">
                 <s:Label id="labelName"
-                         fontWeight="bold" />
+                         fontWeight="bold"
+                         textDecoration="none"
+                         textDecoration.downAndSelected="underline"
+                         textDecoration.overAndSelected="underline"
+                         textDecoration.upAndSelected="underline" />
                 <s:Label id="labelTime"
                          fontSize="10"
                          fontStyle="italic" />
             </s:VGroup>
+
+            <s:Rect width="100%"
+                    height="100%"
+                    bottomLeftRadiusX="5"
+                    bottomLeftRadiusY="5"
+                    topLeftRadiusX="5"
+                    topLeftRadiusY="5">
+                <s:fill>
+                    <s:SolidColor color="{Color.white}"
+                                  alpha="0"
+                                  alpha.up=".2" />
+                </s:fill>
+            </s:Rect>
         </s:Group>
 
         <s:Group height="100%">

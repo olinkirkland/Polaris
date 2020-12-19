@@ -8,6 +8,7 @@ package state
 
         public function Inventory()
         {
+            items = [];
         }
 
         public static function fromObject(u:Object):Inventory
